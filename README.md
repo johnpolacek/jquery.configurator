@@ -1,9 +1,8 @@
 jQuery Configurator
-===================
-The jQuery plugin for injecting url parameter options into webpages and JSRender templates
-------------------------------------------------------------------------------------------
+-------------------
 
-*by [@johnpolacek]:(http://twitter.com/johnpolacek)*
+**The jQuery plugin for injecting url parameter options into webpages and JSRender templates**
+*by [@johnpolacek](http://twitter.com/johnpolacek)*
 
 Plays nice with [JSRender](https://github.com/BorisMoore/jsrender) because it is awesome - https://github.com/BorisMoore/jsrender
 
