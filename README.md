@@ -1,15 +1,13 @@
 jQuery Configurator
 -------------------
 
-**The jQuery plugin for injecting url parameter options into webpages and JSRender templates**
+**The jQuery plugin for injecting url parameter options into webpages**
 *by [@johnpolacek](http://twitter.com/johnpolacek)*
-
-Plays nice with [JSRender](https://github.com/BorisMoore/jsrender) because it is awesome - https://github.com/BorisMoore/jsrender
 
 To just get a data object from url parameters of current page, do:
 `$.Configurator().getConfig(); // returns data object`
 
-Need to do more documentation and a demo page for this one..
+A common use for this would be to use it with a JavaScript template engine. I like [JSRender](https://github.com/BorisMoore/jsrender) because it is awesome - https://github.com/BorisMoore/jsrender
 
 
 Dual licensed under MIT and GPL.
