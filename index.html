@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>jQuery Configurator</title>
+    <meta name="description" content="jQuery Configurator - The jQuery plugin for injecting url parameter options into webpages and JSRender templates" />
+    <meta name="author" content="John Polacek" />
+
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <a href="https://github.com/johnpolacek/jquery.configurator">
+        <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 11;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" alt="Fork me on GitHub" />
+    </a>
+
+    <div class="wrapper">
+    
+        <header>
+            <h1>jQuery Configurator</h1>
+            <h2>The jQuery plugin for injecting url parameters <br />into webpages and JSRender templates</h2>
+            <p class="author">
+                <a href="https://twitter.com/johnpolacek" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @johnpolacek</a><br /><br />Created by John Polacek
+           </p>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </header>
+        
+        <section>
+            <h3>Usage</h3>
+            <p>To just get a data object from the url parameters of current page, do:
+            <pre><code>var data = $.Configurator().getConfig(); // returns data object</code></pre>
+
+            <p>Plays nice with <a href="https://github.com/BorisMoore/jsrender" target="_blank">JSRender</a> because it is awesome. To use JSRender, pass in a default data object for when there are no url params, and an array of objects with targets and templates:</p>
+<pre><code>
+$.Configurator(
+    { boy:'Jack', girl:'Jill', direction:'up', place:'hill' }, [
+        { '#rhyme-form','#rhyme-form-tpl' },
+        { '#rhyme-blockquote','#rhyme-blockquote-tpl' },
+        { '#demo-url-display','#demo-url-display-tpl' }]
+);</code></pre>
+            
+            <div id="demo">
+                <form id="rhyme-form"></form>
+                <script id="rhyme-form-tpl" type="text/x-jsrender">
+                    <fieldset><label>Boy Name</label><input type="text" id="input-boy" data-key="boy" value="{{>boy}}"></fieldset>
+                    <fieldset><label>Girl Name</label><input type="text" id="input-girl" data-key="girl" value="{{>girl}}"></fieldset>
+                    <fieldset><label>Direction</label><input type="text" id="input-direction" data-key="direction" value="{{>direction}}"></fieldset>
+                    <fieldset><label>Place</label><input type="text" id="input-place" data-key="place" value="{{>place}}"></fieldset>
+                </script>    
+
+                <blockquote id="rhyme-blockquote"></blockquote>
+                <script id="rhyme-blockquote-tpl" type="text/x-jsrender">
+                    {{>boy}} and {{>girl}} went {{>direction}} the {{>place}}...
+                </script>
+
+                <div id="demo-url-display"></div>
+                <script id="demo-url-display-tpl" type="text/x-jsrender">
+                    <input type="text"  value="index.html?boy={{>boy}}&girl={{>girl}}&direction={{>direction}}&place={{>place}}" readonly="readonly">
+                </script>
+                
+            </div>
+
+            <p>If you pass in a value with commas, it will be turned into an array. For example, demo.html?people=jack,jill,bill,jim,hank,oprah gets parameterized by configurator into:</p>
+
+            <pre><code>{ people:['jack','jill','bill','jim','hank','oprah'] }</code></pre>
+
+            <p>We can get a lot fancier with the sorts of things you can do with jQuery Configurator, but this is enough to get started. Hopefully, more advanced examples to come..</p>
+
+        </section>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js"><\/script>')</script>
+
+    <script src="jsrender.js"></script>
+    <script src="jquery.configurator.js"></script>
+    <script>
+        
+        $(function() {
+            var configurator = $.Configurator(
+                { boy:'Jack', girl:'Jill', direction:'up', place:'hill' }, [
+                    { target:'#rhyme-form',template:'#rhyme-form-tpl' },
+                    { target:'#rhyme-blockquote',template:'#rhyme-blockquote-tpl' },
+                    { target:'#demo-url-display',template:'#demo-url-display-tpl' }]
+            );
+
+            $('#rhyme-form').on('change', 'input', function() {
+                var updateParam = {};
+                updateParam[$(this).attr('data-key')] = $(this).val();
+                configurator.updateData(updateParam);
+            });
+        });
+      
+
+    </script>
+
+</body>
+</html>
