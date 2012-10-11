@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>jQuery Configurator</title>
+    <meta name="description" content="jQuery Configurator - The jQuery plugin for injecting url parameter options into webpages and JSRender templates" />
+    <meta name="author" content="John Polacek" />
+
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <a href="https://github.com/johnpolacek/jquery.configurator">
+        <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 11;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" alt="Fork me on GitHub" />
+    </a>
+
+    <div class="wrapper">
+    
+        <header>
+            <h1>jQuery Configurator</h1>
+            <h2>The jQuery plugin for injecting url parameters <br />into webpages and JSRender templates</h2>
+            <p class="author">
+                <a href="https://twitter.com/johnpolacek" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @johnpolacek</a><br /><br />Created by John Polacek
+           </p>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </header>
+        
+        <section class="playground">
+            <h3>Playground</h3>     
+            <label>Configs</label>       
+            <table id="config-list"></table>
+            <script id="config-list-tpl" type="text/x-jsrender">
+                {{if configs.length}}
+                    {{for configs}}
+                        <tr><td class="key">{{:key}} :</td><td class="val"> 
+                        {{if val.length}}
+                            {{for val}}
+                                {{:#data}}<br />
+                            {{/for}}
+                            
+                        {{else}}
+                            {{:val}}
+                        {{/if}}
+                        </td>
+                    {{/for}}
+                {{else}}
+                    <td><em>No parameters in url</em></td>
+                {{/if}}
+            </script>
+            
+        </section>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js"><\/script>')</script>
+
+    <script src="jsrender.js"></script>
+    <script src="jquery.configurator.js"></script>
+    <script>
+        
+        if (!window.console) console = {log: function() {}};
+
+        $(function() {
+            
+            // get data object from url params
+            var configData = $.Configurator().getConfig();
+
+            // log the config data in the console
+            console.log(configData);
+            
+            // add data to array for JSRender
+            var configs = [];
+            $.each(configData, function(key,val) {
+                configs.push({key:key, val:val});
+            });
+
+            // render template
+            $( "#config-list" ).html(
+                $( "#config-list-tpl" ).render( {configs:configs} )
+            );
+        });
+      
+
+    </script>
+
+</body>
+</html>
