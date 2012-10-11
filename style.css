@@ -32,11 +32,13 @@ iframe {margin-right:10px; position:relative; top:10px;}
 #rhyme-blockquote { text-align: center; }
 #demo-url-display input { display: block; text-align: center; width: 480px; margin: 40px auto 10px; color: #666; font-style: italic; }
 .playground { text-align: center; }
+.playground a { font-weight: normal; font-style: italic; }
 .playground label { margin: 40px 0 10px; display: block; font-style: italic; font-weight: bold; }
 #config-list { border-collapse:separate; border: solid 1px #eee; margin: 0 auto 40px; padding: 10px; text-align: left;}
 #config-list tr { margin: 0 20px; }
 #config-list td { padding: 5px; vertical-align: top; }
 #config-list .key { text-align: right; font-weight: bold; }
+.icon-back-arrows { font-size: 1.3em; }
 
 
 /*  ==========================================================================
