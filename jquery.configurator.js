@@ -45,8 +45,15 @@
             
             for (var i=0; i < configRenders.length; i++) {
 
+                // get target element, (catch no '#' on selector error)
                 var $target = $(configRenders[i].target);
+                if (!$target.length) $target = $('#'+configRenders[i].target);
+                
+                // get template element, (catch no '#' on selector error)
                 var $template = $(configRenders[i].template);
+                if (!$template.length) $template = $('#'+configRenders[i].template);
+                
+                // render html or throw error
                 if ($template.length && $target.length){
                     $target.html( $template.render( configData ) );
                 } else {
