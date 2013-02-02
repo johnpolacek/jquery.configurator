@@ -1,0 +1,27 @@
+{
+    "name": "Configurator",
+    "title": "Configurator",
+    "description": "The jQuery plugin for injecting url parameter options into webpages and JSRender templates",
+    "keywords": [
+        "parameters",
+        "prototyping"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "John Polacek",
+        "url": "http://johnpolacek.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "https://github.com/johnpolacek/jquery.configurator/blob/master/README.md"
+        }
+    ],
+    "homepage": "http://johnpolacek.github.com/jquery.configurator/",
+    "demo": "http://johnpolacek.github.com/jquery.configurator/",
+    "dependencies": {
+        "jquery": ">=1.8.1",
+        "json2": ">=1.0.0",
+        "jsrender":">=1.0.0"
+    }
+}
