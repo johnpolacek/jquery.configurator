@@ -14,14 +14,14 @@
     "licenses": [
         {
             "type": "MIT",
-            "https://github.com/johnpolacek/jquery.configurator/blob/master/README.md"
+            "url":"https://github.com/johnpolacek/jquery.configurator/blob/master/README.md"
         }
     ],
     "homepage": "http://johnpolacek.github.com/jquery.configurator/",
     "demo": "http://johnpolacek.github.com/jquery.configurator/",
     "dependencies": {
         "jquery": ">=1.8.1",
-        "json2": ">=1.0.0",
+        "json2": ">=2.0.0",
         "jsrender":">=1.0.0"
     }
 }
